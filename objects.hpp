@@ -24,11 +24,11 @@ void setRepairStatus(Pipe& pipe, bool status);
 
 void createPipe(Pipe& pipe);
 
-void createCSStation(CompressStation& station);
+void createCS(CompressStation& station);
 
 void printPipe(const Pipe& pipe);
 
-void printCSstation(const CompressStation& station);
+void printCS(const CompressStation& station);
 
 void saveFile(const Pipe& pipe, const CompressStation& station);
 

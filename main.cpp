@@ -42,7 +42,7 @@ int main() {
                 clearConsole();
                 cout << "2. Добавление КС\n\n";
 
-                createCSStation(station);
+                createCS(station);
 
                 cin.ignore();
                 cin.get();
@@ -61,7 +61,7 @@ int main() {
                 if (station.name.empty()) {
                     cout << "Компрессорная станция не создана\n";
                 } else {
-                    printCSstation(station);
+                    printCS(station);
                 }
 
                 cin.ignore();

@@ -67,7 +67,7 @@ void createPipe(Pipe& pipe) {
     pipe.isRepair = repairStatus;
 }
 
-void createCSStation(CompressStation& station) {
+void createCS(CompressStation& station) {
     cout << "Введите название КС: ";
     cin >> station.name;
 
@@ -110,7 +110,7 @@ void printPipe(const Pipe& pipe) {
     cout << "------------------------------\n";
 }
 
-void printCSstation(const CompressStation& station) {
+void printCS(const CompressStation& station) {
     cout << "------------------------------\n";
     cout << "Название:            " << station.name << "\n";
     cout << "Всего цехов:         " << station.worker_count << "\n";
