@@ -16,6 +16,8 @@ struct CompressStation {
     int station_class;
 };
 
+int inputInt();
+
 void startWorkstation(CompressStation& station);
 
 void stopWorkstation(CompressStation& station);
@@ -30,7 +32,12 @@ void printPipe(const Pipe& pipe);
 
 void printCS(const CompressStation& station);
 
+void showObjects(const Pipe& pipe, const CompressStation& station);
+
+void editPipe(Pipe& pipe);
+
+void editCS(CompressStation& station);
+
 void saveFile(const Pipe& pipe, const CompressStation& station);
 
 void loadFile(Pipe& pipe, CompressStation& station);
-
