@@ -62,7 +62,7 @@ void setRepairStatus(Pipe& pipe, bool status) {
 // Создание трубы
 void createPipe(Pipe& pipe) {
     cout << "Введите название трубы: ";
-    cin >> pipe.name;
+    getline(cin >> ws, pipe.name);
 
     cout << "Введите длину трубы: ";
     pipe.length = inputInt();
@@ -97,7 +97,7 @@ void createPipe(Pipe& pipe) {
 // Создание компрессорной станции
 void createCS(CompressStation& station) {
     cout << "Введите название КС: ";
-    cin >> station.name;
+    getline(cin >> ws, station.name);
 
     cout << "Введите количество цехов: ";
     station.worker_count = inputInt();
@@ -242,12 +242,48 @@ void editCS(CompressStation& station) {
 }
 
 
+// Сохранение трубы в файл
+void savePipe(ofstream& file, const Pipe& pipe) {
+    file << pipe.name << "\n";
+    file << pipe.length << "\n";
+    file << pipe.diameter << "\n";
+    file << pipe.isRepair << "\n";
+}
+
+
+// Сохранение КС в файл
+void saveCS(ofstream& file, const CompressStation& station) {
+    file << station.name << "\n";
+    file << station.worker_count << "\n";
+    file << station.worker_count_active << "\n";
+    file << station.station_class << "\n";
+}
+
+
+// Загрузка трубы из файла
+void loadPipe(ifstream& file, Pipe& pipe) {
+    getline(file >> ws, pipe.name);
+    file >> pipe.length;
+    file >> pipe.diameter;
+    file >> pipe.isRepair;
+}
+
+
+// Загрузка КС из файла
+void loadCS(ifstream& file, CompressStation& station) {
+    getline(file >> ws, station.name);
+    file >> station.worker_count;
+    file >> station.worker_count_active;
+    file >> station.station_class;
+}
+
+
 // Сохранение в файл
 void saveFile(const Pipe& pipe, const CompressStation& station) {
     string filename;
 
     cout << "Введите имя файла: ";
-    cin >> filename;
+    getline(cin >> ws, filename);
 
     ofstream file(filename);
 
@@ -256,15 +292,8 @@ void saveFile(const Pipe& pipe, const CompressStation& station) {
         return;
     }
 
-    file << pipe.name << "\n";
-    file << pipe.length << "\n";
-    file << pipe.diameter << "\n";
-    file << pipe.isRepair << "\n";
-
-    file << station.name << "\n";
-    file << station.worker_count << "\n";
-    file << station.worker_count_active << "\n";
-    file << station.station_class << "\n";
+    savePipe(file, pipe);
+    saveCS(file, station);
 
     file.close();
 
@@ -277,7 +306,7 @@ void loadFile(Pipe& pipe, CompressStation& station) {
     string filename;
 
     cout << "Введите имя файла: ";
-    cin >> filename;
+    getline(cin >> ws, filename);
 
     ifstream file(filename);
 
@@ -286,15 +315,8 @@ void loadFile(Pipe& pipe, CompressStation& station) {
         return;
     }
 
-    file >> pipe.name;
-    file >> pipe.length;
-    file >> pipe.diameter;
-    file >> pipe.isRepair;
-
-    file >> station.name;
-    file >> station.worker_count;
-    file >> station.worker_count_active;
-    file >> station.station_class;
+    loadPipe(file, pipe);
+    loadCS(file, station);
 
     if (file.fail()) {
         cout << "Ошибка чтения данных из файла.\n";

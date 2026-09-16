@@ -19,8 +19,7 @@ void clearConsole() {
 }
 
 int main() {
-    setlocale(LC_ALL, "RU");
-
+    
     Pipe pipe{};
     CompressStation station{};
 
@@ -71,8 +70,6 @@ int main() {
             case 0:
                 return 0;
         }
-
-        cin.ignore(1000, '\n');
 
         cout << "\nНажмите Enter для продолжения...";
         cin.get();
