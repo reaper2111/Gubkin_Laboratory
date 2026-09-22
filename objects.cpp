@@ -292,8 +292,19 @@ void saveFile(const Pipe& pipe, const CompressStation& station) {
         return;
     }
 
-    savePipe(file, pipe);
-    saveCS(file, station);
+    if (!pipe.name.empty()) {
+        file << 1 << "\n";
+        savePipe(file, pipe);
+    } else {
+        file << 0 << "\n";
+    }
+
+    if (!station.name.empty()) {
+        file << 1 << "\n";
+        saveCS(file, station);
+    } else {
+        file << 0 << "\n";
+    }
 
     file.close();
 
@@ -315,8 +326,24 @@ void loadFile(Pipe& pipe, CompressStation& station) {
         return;
     }
 
-    loadPipe(file, pipe);
-    loadCS(file, station);
+    int hasPipe;
+    int hasCS;
+
+    file >> hasPipe;
+
+    if (hasPipe == 1) {
+        loadPipe(file, pipe);
+    } else {
+        pipe = Pipe{};
+    }
+
+    file >> hasCS;
+
+    if (hasCS == 1) {
+        loadCS(file, station);
+    } else {
+        station = CompressStation{};
+    }
 
     if (file.fail()) {
         cout << "Ошибка чтения данных из файла.\n";
