@@ -72,7 +72,11 @@ int main() {
         }
 
         cout << "\nНажмите Enter для продолжения...";
-        cin.ignore(1000, '\n');
+
+        if (choice != 6 && choice != 7) {
+            cin.ignore(1000, '\n');
+        }
+
         cin.get();
     }
 }

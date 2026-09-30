@@ -241,7 +241,6 @@ void editCS(CompressStation& station) {
     }
 }
 
-
 // Сохранение трубы в файл
 void savePipe(ofstream& file, const Pipe& pipe) {
     file << pipe.name << "\n";
